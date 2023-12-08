@@ -67,7 +67,7 @@ void uart_communication_fsm(){
 		case RESPONE:
 			if (strcmp(get_command(), "RST") == 0){
 				ADC_value = HAL_ADC_GetValue(&hadc1);
-				HAL_UART_Transmit(&huart2, (void *)str,  sprintf(str, "\r\n!ADC=%d#\r\n", ADC_value), 1000);
+				HAL_UART_Transmit(&huart2, (void *)str,  sprintf(str, "\r\n!ADC=%d#", ADC_value), 1000);
 				uartStatus = REPEAT;
 				clr_command();
 				setTimer0(300);
@@ -80,7 +80,7 @@ void uart_communication_fsm(){
 		case REPEAT:
 			if (timer0_flag == 1){
 				ADC_value = HAL_ADC_GetValue(&hadc1);
-				HAL_UART_Transmit(&huart2, (void*) str,  sprintf(str, "\r\n!ADC=%d#\r\n", ADC_value), 1000);
+				HAL_UART_Transmit(&huart2, (void*) str,  sprintf(str, "\r\n!ADC=%d#", ADC_value), 1000);
 				setTimer0(300);
 			}
 			if (strcmp(get_command(), "OK") == 0){
