@@ -101,9 +101,11 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_UART_Receive_IT(&huart2, &temp, 1);
+  HAL_ADC_Start(&hadc1);
   /* USER CODE END 2 */
   setTimer0(10);
   setTimer1(50);
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
